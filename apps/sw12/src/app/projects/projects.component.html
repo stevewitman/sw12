@@ -8,12 +8,12 @@
       ></bb-projects-list>
     </div>
     <div class="col-7">
-      <bb-projects-list
+      <bb-project-details
         [formGroup]="form"
         [project]="project"
         (saved)="save($event)"
         (cancelled)="reset()"
-      ></bb-projects-list>
+      ></bb-project-details>
     </div>
   </div>
 </div>

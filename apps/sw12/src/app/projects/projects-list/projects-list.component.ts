@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Project } from '../../../../../../libs/core-data/src/lib/projects/project.model';
+import { Project } from '@bb/core-data';
 
 @Component({
   selector: 'bb-projects-list',

@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from './project.model';
 
-const BASE_URL = 'https://bb-base-server.herokuapp.com\'';
+const BASE_URL = 'https://bb-base-server.herokuapp.com';
+
 const MODEL = 'projects'
 
 @Injectable({

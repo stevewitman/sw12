@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../../../../../libs/core-data/src/lib/projects/project.model';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectsService } from '../../../../../libs/core-data/src/lib/projects/projects.service';
+import { ProjectsService, Project } from '@bb/core-data';
+import { ProjectsFacade } from '@bb/core-state';
 
 @Component({
   selector: 'bb-projects',
@@ -10,16 +10,53 @@ import { ProjectsService } from '../../../../../libs/core-data/src/lib/projects/
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<Project[]>
+  projects$: Observable<Project[]> = this.projectsFacade.allProject$;
   project: Project;
   form: FormGroup;
 
   constructor(
     private projectsService: ProjectsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private projectsFacade: ProjectsFacade
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+    this.projectsFacade.loadProjects();
+    this.projectsFacade.mutations$.subscribe(() => this.reset());
+  }
+
+  reset() {
+    this.form.reset();
+    this.project = {} as Project;
+    Object.keys(this.form.controls).forEach(key => {
+      this.form.get(key).setErrors(null);
+    })
+  }
+
+  select(project: Project) {
+    this.projectsFacade.selectProject(project.id);
+    this.form.patchValue(project);
+  }
+
+  create() {
+    this.projectsFacade.createProject(this.form.value);
+  }
+
+  update() {
+    this.projectsFacade.updateProject(this.form.value);
+  }
+
+  save(project: Project) {
+    if (project.id) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  delete(project: Project) {
+    this.projectsFacade.deleteProject(project);
   }
 
   private initForm() {
