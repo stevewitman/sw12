@@ -6,6 +6,7 @@ import { MaterialModule } from '@bb/material';
 import { UiToolbarModule } from '@bb/ui-toolbar';
 import { CoreDataModule } from '@bb/core-data';
 import { CoreStateModule } from '@bb/core-state';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CoreStateModule } from '@bb/core-state';
     MaterialModule,
     UiToolbarModule,
     CoreDataModule,
-    CoreStateModule
+    CoreStateModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
