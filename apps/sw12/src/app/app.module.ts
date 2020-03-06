@@ -7,10 +7,16 @@ import { UiToolbarModule } from '@bb/ui-toolbar';
 import { CoreDataModule } from '@bb/core-data';
 import { CoreStateModule } from '@bb/core-state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectsComponent,
+    ProjectsListComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
